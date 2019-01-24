@@ -1,38 +1,84 @@
 <template>
     <div class="header-grid" >
+        <div  class="mob-div" />
         <img src="./../assets/logo.png" />
         <a> HOME </a>
         <a> DOWNLOAD </a>
         <a> ABOUT </a>
         <a> FORUMS </a>
+        <div class="mobile-menu"> 
+           <v-menu bottom left>
+            <v-btn
+              slot="activator"
+              dark
+              icon
+            >
+              <v-icon>more_vert</v-icon>
+            </v-btn>
+
+            <v-list>
+              <v-list-tile
+                v-for="(item, i) in items"
+                :key="i"
+              >
+                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              </v-list-tile>
+            </v-list>
+          </v-menu>
+        </div>
     </div>
 </template>
 <script>
 export default {
     name:'Header',
+    data: () => ({
+      items: [
+        { title: 'HOME' },
+        { title: 'DOWNLOAD' },
+        { title: 'ABOUT' },
+        { title: 'FORUMS' }
+      ]
+    })
 }
 </script>
 <style lang="css" scoped>
+
+.mobile-menu,.mob-div{
+    display: none;
+}
 .header-grid {
-    display: grid;
-    grid-template-columns: repeat(5,1fr) 8fr;
-    margin-left: 3rem;
-    margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr) 8fr;
+  margin-left: 3rem;
+  margin-top: 1rem;
 }
 .header-grid img {
-    height: 5rem;
-    grid-column-gap: 1em;
+  height: 5rem;
+  grid-column-gap: 1em;
 }
 .header-grid a {
-   height: inherit;
-   color: rgba(255,255,255,.58);
-   font-size: 2.3rem;
-   justify-self: center;
-   align-self: center;
+  height: inherit;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 2.3rem;
+  justify-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
 }
 .header-grid a:hover {
-    color: white;
+  color: white;
 }
+@media screen and (max-width: 1054px) {
+.header-grid {
+    grid-template-columns: 5fr 1fr;
+}
+a,.header-grid img  {
+    display: none;
+}
+.mobile-menu,.mob-div {
+    display: block;
+}
+}
+
 </style>
 
 
