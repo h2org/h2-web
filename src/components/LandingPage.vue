@@ -2,7 +2,7 @@
     <div class="landing-page-grid" > 
         <div class="quick-download-grid" >
             <p>H2 is a minimalist browser to watch embeded videos and more in picture-in-picture mode.</p>
-           <button class="download-button">DOWNLOAD FOR MAC</button>
+           <button v-on:click="gotosite('https://github.com/poush/H2/releases')"  class="download-button">DOWNLOAD</button>
         </div>
         <div class="poster-h2" >
             <img src="../assets/dsh2.png" alt="">
@@ -13,6 +13,11 @@
 <script>
 export default {
     name:'Landing Page',
+    methods : {
+        gotosite(producturl) {
+          window.location.href = producturl
+      }
+    }
 }
 </script>
 <style lang="css" scoped>

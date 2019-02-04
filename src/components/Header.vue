@@ -2,10 +2,9 @@
     <div class="header-grid" >
         <div  class="mob-div" />
         <img src="./../assets/logo.png" />
-        <a> HOME </a>
-        <a> DOWNLOAD </a>
-        <a> ABOUT </a>
-        <a> FORUMS </a>
+        <a  v-for="(item, i) in items"
+                :key="i" v-on:click="gotosite(item.link)"
+       > {{ item.title }} </a>
         <div class="mobile-menu"> 
            <v-menu bottom left>
             <v-btn
@@ -20,6 +19,7 @@
               <v-list-tile
                 v-for="(item, i) in items"
                 :key="i"
+                v-on:click="gotosite(item.link)"
               >
                 <v-list-tile-title>{{ item.title }}</v-list-tile-title>
               </v-list-tile>
@@ -33,12 +33,15 @@ export default {
     name:'Header',
     data: () => ({
       items: [
-        { title: 'HOME' },
-        { title: 'DOWNLOAD' },
-        { title: 'ABOUT' },
-        { title: 'FORUMS' }
+        { title: 'SOURCE',link:'https://github.com/poush/H2' },
+        { title: 'COMMUNITY',link:'https://gitter.im/h2org/community#' }
       ]
-    })
+    }),
+     methods : {
+        gotosite(producturl) {
+          window.location.href = producturl
+      }
+    }
 }
 </script>
 <style lang="css" scoped>
@@ -55,6 +58,9 @@ export default {
 .header-grid img {
   height: 5rem;
   grid-column-gap: 1em;
+}
+a {
+  cursor: pointer;
 }
 .header-grid a {
   height: inherit;
