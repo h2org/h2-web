@@ -1,37 +1,64 @@
 <template>
-    <div class="landing-page-grid" > 
-        <div class="quick-download-grid" >
-            <p>H2 is a minimalist browser to watch embeded videos and more in picture-in-picture mode.</p>
-           <button v-on:click="gotosite('https://github.com/poush/H2/releases')"  class="download-button">DOWNLOAD</button>
-        </div>
-        <div class="poster-h2" >
-            <img src="../assets/dsh2.png" alt="">
-        </div>
+  <div class="landing-page-grid">
+    <div class="quick-download-grid">
+      <youtube :video-id="'QTKwejrIeFg'" :player-width="display"></youtube>
+      <p>H2 is a minimalist browser to watch embeded videos and more in picture-in-picture mode.</p>
+      <button
+        v-on:click="gotosite('https://github.com/poush/H2/releases')"
+        class="download-button"
+      >DOWNLOAD</button>
     </div>
-
+    <div class="poster-h2">
+      <img src="../assets/dsh2.png" alt>
+    </div>
+  </div>
 </template>
 <script>
 export default {
-    name:'Landing Page',
-    methods : {
-        gotosite(producturl) {
-          window.location.href = producturl
+  name: "Landing Page",
+  data() {
+  return {
+    display: "100%"
+  }
+},
+
+  methods: {
+    gotosite(producturl) {
+      window.location.href = producturl;
+    },
+    onResize() {
+      if (window.innerWidth > 1054) {
+        this.display = "60%";
+      } else {
+        this.display = "100%";
       }
     }
-}
+  },
+  created() {
+    if (window.innerWidth > 1054) {
+        this.display = "60%";
+      } else {
+        this.display = "100%";
+      }
+    window.addEventListener("resize", this.onResize);
+  },
+
+  beforeDestroy() {
+    window.removeEventListener("resize", this.onResize);
+  }
+};
 </script>
 <style lang="css" scoped>
-
 button {
   width: 60%;
   background: none;
   border: 0;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-family: "TypoPRO Bebas Neue", sans-serif;
   padding: 1rem;
   -webkit-box-shadow: inset 0 0 0 5px white;
-          box-shadow: inset 0 0 0 5px white;
+  box-shadow: inset 0 0 0 5px white;
   color: white;
   font-size: inherit;
   position: relative;
@@ -42,7 +69,7 @@ button {
 button::before,
 button::after {
   -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  box-sizing: inherit;
   content: "";
   position: absolute;
   width: 100%;
@@ -101,11 +128,12 @@ button::after {
   grid-area: poster;
 }
 .quick-download-grid {
+  margin-top: 2rem;
   grid-area: download;
   max-width: 700px;
 }
 .quick-download-grid p {
-  margin-top: 20vh;
+  margin-top: 2vh;
   color: rgba(255, 255, 255, 0.58);
   max-width: 60%;
 }
@@ -121,54 +149,55 @@ button::after {
   width: 80%;
 }
 @media screen and (max-width: 1054px) {
-.landing-page-grid {
+  .landing-page-grid {
     grid-template-columns: 1fr;
     grid-template-areas: "poster" "download";
     padding-left: 0rem;
     width: 90vw;
-}
-.quick-download-grid p {
+  }
+  .quick-download-grid p {
     margin-top: 10vh;
     max-width: 80%;
-}
-.button-download {
+  }
+  .button-download {
     max-width: 80%;
-}
-button {
+  }
+  button {
     width: 100%;
-}
-.download-button-wrap {
+  }
+  .download-button-wrap {
     width: 80%;
     -ms-flex-item-align: center;
-        align-self: center;
+    align-self: center;
     justify-self: center;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-.poster-h2,.quick-download-grid {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-}
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .poster-h2,
+  .quick-download-grid {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
 
+}
 </style>
 
 
