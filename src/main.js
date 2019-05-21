@@ -5,7 +5,7 @@ import 'vuetify/dist/vuetify.min.css'
 import VueYouTubeEmbed from 'vue-youtube-embed'
 Vue.use(VueYouTubeEmbed)
 Vue.use(Vuetify)
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 
 new Vue({
   render: h => h(App),
